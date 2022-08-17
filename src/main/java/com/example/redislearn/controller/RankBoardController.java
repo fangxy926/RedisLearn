@@ -1,4 +1,4 @@
-package com.example.redislearn.rankingboard.controller;
+package com.example.redislearn.controller;
 
 import com.example.redislearn.rankingboard.entity.UserScore;
 import com.example.redislearn.rankingboard.service.RankBoardService;
