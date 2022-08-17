@@ -39,10 +39,10 @@ public class RankBoardServiceImpl implements RankBoardService {
     }
 
 
-    private long getPeriodEndDateTimestamp(String period) {
+    private long getPeriodEndDateTimestamp() {
         Long currentTime = System.currentTimeMillis();
         String timeZone = "GMT+8";
-        switch (period) {
+        switch (RankBoardServiceImpl.period) {
             case "DAY":
                 return DateUtil.getDailyEndTime(currentTime, timeZone);
             case "WEEK":
@@ -60,7 +60,7 @@ public class RankBoardServiceImpl implements RankBoardService {
         if (score == null) score = 0d;
         int oldPoint = getPoint(score.longValue());
         System.out.println("oldPoint:" + oldPoint + ", newPoint:" + (oldPoint + addPoint));
-        long newScore = toScore(oldPoint + addPoint, getPeriodEndDateTimestamp(period));
+        long newScore = toScore(oldPoint + addPoint, getPeriodEndDateTimestamp());
         System.out.println("userId：" + userId + ", newScore:" + newScore);
         redisTemplate.opsForZSet().add(key, String.valueOf(userId), newScore);
     }
